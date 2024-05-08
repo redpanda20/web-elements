@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password input</title>
+    <meta name="color-scheme" content="dark light">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font: inherit;
+        }
+        html, body { height: 100% }
+        main {
+            font-size: 16px;
+            height: 100%;
+            display: grid;
+            place-content: center;
+        }
+    </style>
+    <style>
+        fieldset {
+            --_clr: grey;
+
+            display: flex;
+            position: relative;
+            border: 1px solid var(--_clr);
+            border-radius: 0.25rem;
+            padding: 0.75em 1em;
+        }
+        fieldset:focus-within {
+            --_clr: forestgreen;
+            border-width: 2px;
+        }
+        legend {
+            position: absolute;
+            top: -0.5em;
+            background-color: #1c1b22;
+            color: var(--_clr);
+            transition: opacity 200ms, transform 400ms;
+        }
+        fieldset:has(:placeholder-shown) legend {
+            opacity: 0;
+            transform: translateY(1rem);
+            pointer-events: none;
+        }
+        input {
+            appearance: none;
+            outline: none;
+            border: none;
+            height: 1.5em;
+            background-color: #1c1b22;
+        }
+        input[type="checkbox"] {
+            width: 1.5em;
+            background: url("visibility.svg");
+        }
+        input[type="checkbox"]:checked {
+            background: url("visibility_off.svg");
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <fieldset>
+            <legend>Password</legend>
+            <input type="password" name="password" placeholder="Password">
+            <input type="checkbox">
+            <script>
+                const field = document.currentScript.closest("fieldset");
+                const input = field.querySelector("input");
+                const visibilityToggle = field.querySelector("input[type='checkbox']");
+                visibilityToggle.addEventListener("change", event => input.setAttribute("type",
+                    visibilityToggle.checked ? "text" : "password"))
+            </script>
+        </fieldset>
+    </main>
+</body>
+</html>
