@@ -80,13 +80,16 @@
             <fieldset>
                 <legend>Password</legend>
                 <input type="password" name="password" placeholder="Password" minlength="8" required>
-                <input type="checkbox">
+                <input type="checkbox" onchange="">
                 <script>
-                    const field = document.currentScript.closest("fieldset");
-                    const input = field.querySelector("input");
-                    const visibilityToggle = field.querySelector("input[type='checkbox']");
-                    visibilityToggle.addEventListener("change", event => input.setAttribute("type",
-                        visibilityToggle.checked ? "text" : "password"))
+                    {
+                        const fieldset = document.currentScript.closest("fieldset");
+                        const inputField = fieldset.querySelector("input");
+                        const inputToggle = fieldset.querySelector("input[type='checkbox']");
+                        inputToggle.addEventListener("change", () => {
+                            inputField.setAttribute("type", inputToggle.checked ? "text" : "password")
+                        });
+                    }
                 </script>
             </fieldset>
         </form>
