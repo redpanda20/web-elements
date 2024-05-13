@@ -23,16 +23,25 @@
     <style>
         form {
             display: grid;
-            gap: 1rem;
+            gap: 1.5rem;
+        }
+        legend {
+            position: absolute;
+            top: -0.5em;
+            background-color: Canvas;
+            color: var(--_clr);
+            transition: opacity 200ms, transform 400ms;
         }
         fieldset {
             --_clr: grey;
 
             display: flex;
+            align-items: center;
             position: relative;
             border: 1px solid var(--_clr);
-            border-radius: 0.25rem;
+            border-radius: 0.5rem;
             padding: 0.75em 1em;
+            height: 3.5em;
         }
         fieldset:focus-within {
             --_clr: forestgreen;
@@ -41,13 +50,6 @@
         fieldset:has(:user-invalid) {
             --_clr: red;
             outline: 1px solid var(--_clr);
-        }
-        legend {
-            position: absolute;
-            top: -0.5em;
-            background-color: Canvas;
-            color: var(--_clr);
-            transition: opacity 200ms, transform 400ms;
         }
         fieldset:has(:placeholder-shown) legend {
             opacity: 0;
@@ -59,14 +61,40 @@
             background-color: transparent;
             outline: none;
             border: none;
-            height: 1.5em;
         }
         input[type="checkbox"] {
-            width: 1.5em;
+            height: 24px;
+            aspect-ratio: 1;
             background: url("visibility.svg");
         }
         input[type="checkbox"]:checked {
             background: url("visibility_off.svg");
+        }
+        a {
+            text-decoration: none;
+            outline: none;
+            color: forestgreen;
+        }
+        a:focus-visible,
+        a:hover {
+            text-decoration: underline;
+        }
+        button[type="submit"] {
+            border: none;
+            border-radius: 2.5em;
+            padding: 0 1.5em;
+            height: 2.5em;
+            background-color: forestgreen;
+            cursor: pointer;
+        }
+        button[type="submit"]:focus-visible,
+        button[type="submit"]:hover {
+            outline: 4px solid hsl(120 61% 34% / 0.2);
+        }
+        form:has(:invalid) button[type="submit"] {
+            cursor: not-allowed;
+            opacity: 0.38;
+            outline: none;
         }
     </style>
 </head>
@@ -79,7 +107,7 @@
             </fieldset>
             <fieldset>
                 <legend>Password</legend>
-                <input type="password" name="password" placeholder="Password" minlength="8" required>
+                <input type="password" name="password" placeholder="Password" required minlength="8">
                 <input type="checkbox">
                 <script>
                     {
@@ -92,6 +120,8 @@
                     }
                 </script>
             </fieldset>
+            <a href="#">Forgot your password?</a>
+            <button type="submit">Log in</button>
         </form>
     </main>
 </body>
