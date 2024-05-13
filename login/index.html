@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in</title>
+    <title>Login</title>
     <meta name="color-scheme" content="dark light">
     <style>
         * {
@@ -17,6 +17,22 @@
             height: 100%;
             display: grid;
             place-content: center;
+            gap: 1rem;
+        }
+        :root {
+            --clr-color: hsl(0 0% 0%);
+            --clr-faded: hsl(0 0% 0% / 0.1);
+            --clr-layer-1: white;
+
+            --clr-primary: forestgreen;
+            --clr-warning: red;
+            
+            @media screen and (prefers-color-scheme: dark) {
+                --clr-color: hsl(0 0% 100%);
+                --clr-faded: hsl(0 0% 100% / 0.1);
+                --clr-layer-1: hsl(0 0% 15%);
+            }
+
             font-family: system-ui, sans-serif;
         }
     </style>
@@ -24,11 +40,20 @@
         form {
             display: grid;
             gap: 1.5rem;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--clr-faded);
+            background-color: var(--clr-layer-1);
+            box-shadow: 0px 10px 15px 0px hsl(0 0% 0% / 0.1);
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 500;
         }
         legend {
             position: absolute;
             top: -0.5em;
-            background-color: Canvas;
+            background-color: var(--clr-layer-1);
             color: var(--_clr);
             transition: opacity 200ms, transform 400ms;
         }
@@ -44,11 +69,11 @@
             height: 3.5em;
         }
         fieldset:focus-within {
-            --_clr: forestgreen;
+            --_clr: var(--clr-primary);
             outline: 1px solid var(--_clr);
         }
         fieldset:has(:user-invalid) {
-            --_clr: red;
+            --_clr: var(--clr-warning);
             outline: 1px solid var(--_clr);
         }
         fieldset:has(:placeholder-shown) legend {
@@ -73,7 +98,7 @@
         a {
             text-decoration: none;
             outline: none;
-            color: forestgreen;
+            color: var(--clr-primary);
         }
         a:focus-visible,
         a:hover {
@@ -84,7 +109,7 @@
             border-radius: 2.5em;
             padding: 0 1.5em;
             height: 2.5em;
-            background-color: forestgreen;
+            background-color: var(--clr-primary);
             cursor: pointer;
         }
         button[type="submit"]:focus-visible,
@@ -101,6 +126,7 @@
 <body>
     <main>
         <form action="#" method="post">
+            <h1>Log in</h1>
             <fieldset>
                 <legend>Email or username</legend>
                 <input type="email" name="username" placeholder="Email or username" required>
@@ -123,6 +149,7 @@
             <a href="#">Forgot your password?</a>
             <button type="submit">Log in</button>
         </form>
+        <a href="#">Don't have an account?</a>
     </main>
 </body>
 </html>
