@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password input</title>
+    <title>Sign in</title>
     <meta name="color-scheme" content="dark light">
     <style>
         * {
@@ -21,6 +21,10 @@
         }
     </style>
     <style>
+        form {
+            display: grid;
+            gap: 1rem;
+        }
         fieldset {
             --_clr: grey;
 
@@ -32,11 +36,11 @@
         }
         fieldset:focus-within {
             --_clr: forestgreen;
-            border-width: 2px;
+            outline: 1px solid var(--_clr);
         }
         fieldset:has(:user-invalid) {
             --_clr: red;
-            border-width: 2px;
+            outline: 1px solid var(--_clr);
         }
         legend {
             position: absolute;
@@ -68,18 +72,24 @@
 </head>
 <body>
     <main>
-        <fieldset>
-            <legend>Password</legend>
-            <input type="password" name="password" placeholder="Password" minlength="8">
-            <input type="checkbox">
-            <script>
-                const field = document.currentScript.closest("fieldset");
-                const input = field.querySelector("input");
-                const visibilityToggle = field.querySelector("input[type='checkbox']");
-                visibilityToggle.addEventListener("change", event => input.setAttribute("type",
-                    visibilityToggle.checked ? "text" : "password"))
-            </script>
-        </fieldset>
+        <form action="#" method="post">
+            <fieldset>
+                <legend>Email or username</legend>
+                <input type="email" name="username" placeholder="Email or username" required>
+            </fieldset>
+            <fieldset>
+                <legend>Password</legend>
+                <input type="password" name="password" placeholder="Password" minlength="8" required>
+                <input type="checkbox">
+                <script>
+                    const field = document.currentScript.closest("fieldset");
+                    const input = field.querySelector("input");
+                    const visibilityToggle = field.querySelector("input[type='checkbox']");
+                    visibilityToggle.addEventListener("change", event => input.setAttribute("type",
+                        visibilityToggle.checked ? "text" : "password"))
+                </script>
+            </fieldset>
+        </form>
     </main>
 </body>
 </html>
